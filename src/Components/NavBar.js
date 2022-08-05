@@ -21,7 +21,7 @@ export default function NavBar(){
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto" class="">
                         <Link to="/student">Add</Link>
-                        <Link to="/">List/View/Delete</Link>
+                        <Link to="/listStudents">List/View/Delete</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

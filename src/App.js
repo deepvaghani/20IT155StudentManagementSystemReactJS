@@ -10,9 +10,10 @@ function App() {
       <Container>
           <Router>
               <NavBar/>
+              <AddStudent/>
               <Routes>
                   <Route path="/student" element={<AddStudent/>} />
-                  <Route path="/" element={<ListStudent/>} />
+                  <Route path="/listStudents" element={<ListStudent/>} />
               </Routes>
           </Router>
       </Container>
