@@ -11,6 +11,7 @@ function App() {
           <Router>
               <NavBar/>
               <AddStudent/>
+              <ListStudent/>
               <Routes>
                   <Route path="/student" element={<AddStudent/>} />
                   <Route path="/listStudents" element={<ListStudent/>} />

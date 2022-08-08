@@ -16,7 +16,7 @@ export default function AddStudent(){
         address : address
     }
 
-    function textChange(event){
+    function textChanged(event){
         if(event.target.name === "id")
             setId(event.target.value);
         else if(event.target.name === "name")
@@ -38,31 +38,33 @@ export default function AddStudent(){
     }
 
     return(
-        <Container>
-            <div>
-                <Card className="my-3">
+        <div  className="my-3">
+            <Container>
+                <Card>
                     <Form onSubmit={saveStudent}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>ID</Form.Label>
-                            <Form.Control name = "id" value={id} type="text" placeholder="Enter ID"  onChange={textChange}/>
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control name = "name" value={name} type="text" placeholder="Enter Name" onChange={textChange}/>
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control name = "address" value={address} type="text" placeholder="Enter Address" onChange={textChange}/>
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
+                        <Card.Header>Add Student Information</Card.Header>
+                        <Card.Body>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Id</Form.Label>
+                                <Form.Control name="id" value={id} type="text" placeholder="Enter id" onChange={textChanged}/>
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control name="name" value={name} type="text" placeholder="Enter name" onChange={textChanged} />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Address</Form.Label>
+                                <Form.Control name="address" value={address} type="text" placeholder="Enter address" onChange={textChanged} />
+                            </Form.Group>
+                        </Card.Body>
+                        <Card.Footer>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Card.Footer>
                     </Form>
                 </Card>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }
