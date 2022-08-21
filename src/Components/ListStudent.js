@@ -1,19 +1,26 @@
-import {Card, Table} from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import {useEffect, useState} from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Card, Container, Table, Button } from "react-bootstrap";
 
-export default function ListStudent(){
+export default function ListStudent() {
 
     const [student, setStudent] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get("http://localhost:8080/listStudents")
             .then(response => setStudent(response.data))
             .catch(error => alert(error));
-    },[])
+    }, [])
 
-    return(
+    let deleteRecord = (id) => {
+        axios.delete("http://localhost:8080/student/"+id)
+            .then(response => {
+                if(response.data != null)
+                    alert("Record Deleted");
+            });
+    }
+
+    return (
         <div className="my-3">
             <Container>
                 <Card.Header><h3>Students List</h3></Card.Header>
@@ -24,6 +31,7 @@ export default function ListStudent(){
                             <th>Student Id</th>
                             <th>Student Name</th>
                             <th>Student Address</th>
+                            <th>Edit/Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,6 +40,10 @@ export default function ListStudent(){
                                 <td>{student.id}</td>
                                 <td>{student.name}</td>
                                 <td>{student.address}</td>
+                                <td>
+                                    <Button variant="success">Edit</Button>{' '}
+                                    <Button variant="primary" onClick ={ () => deleteRecord(student.id)}>Delete</Button>{' '}
+                                </td>
                             </tr>
                         ))}
                         </tbody>
@@ -41,4 +53,3 @@ export default function ListStudent(){
         </div>
     );
 }
-

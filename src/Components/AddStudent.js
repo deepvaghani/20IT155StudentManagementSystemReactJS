@@ -1,43 +1,42 @@
-import React, {useState} from "react";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from "react-bootstrap/Container";
 import axios from "axios";
-import {Card} from "react-bootstrap";
+import React, {useState} from "react";
+import { Container, Form, Card, Button } from "react-bootstrap";
 
-export default function AddStudent(){
+
+export default function AddStudent() {
+
     const [id, setId] = useState();
     const [name, setName] = useState();
     const [address, setAddress] = useState();
 
-    const student = {
+    let student = {
         id : id,
         name : name,
         address : address
     }
 
-    function textChanged(event){
-        if(event.target.name === "id")
+    let textChanged = (event) => {
+        if(event.target.name==="id"){
             setId(event.target.value);
-        else if(event.target.name === "name")
+        } else if(event.target.name==="name"){
             setName(event.target.value);
-        else if(event.target.name === "address")
+        } else if(event.target.name==="address"){
             setAddress(event.target.value);
+        }
     }
 
     let saveStudent = (event) => {
-        //  alert(id + name + address);
         event.preventDefault();
         axios.post("http://localhost:8080/student", student)
             .then(response => {
-                if (response.data != null){
-                    alert("Record Saved Successfully");
+                if(response.data != null){
+                    alert('Record added successfully');
                 }
             })
             .catch(error => alert(error));
     }
 
-    return(
+    return (
         <div  className="my-3">
             <Container>
                 <Card>
